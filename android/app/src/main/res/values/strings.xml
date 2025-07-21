@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Binance Auto-Clicker</string>
+    <string name="accessibility_service_description">Enables automatic clicking functionality for Binance coin launches. This service can simulate touch gestures on your screen when the countdown timer reaches zero.</string>
+</resources>
