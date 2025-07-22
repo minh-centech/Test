@@ -128,11 +128,11 @@ void main() {
     });
 
     test('Multiple position sequence', () {
-      const positions = List.generate(5, (index) => 
+      final positions = List.generate(5, (index) => 
         ClickPosition(x: index * 100.0, y: index * 100.0, label: 'Pos $index')
       );
 
-      const sequence = ClickSequence(positions: positions);
+      final sequence = ClickSequence(positions: positions);
       
       expect(sequence.positions.length, equals(5));
       expect(sequence.positions.every((p) => p.isEnabled), isTrue);

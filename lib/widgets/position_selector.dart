@@ -9,9 +9,9 @@ class PositionSelector extends StatefulWidget {
   final Function(List<ClickPosition>) onPositionsChanged;
 
   const PositionSelector({
-    Key? key,
+    super.key,
     required this.onPositionsChanged,
-  }) : super(key: key);
+  });
 
   @override
   State<PositionSelector> createState() => _PositionSelectorState();

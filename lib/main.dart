@@ -2,7 +2,7 @@ import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_overlay_window/flutter_overlay_window.dart';
+// import 'package:flutter_overlay_window/flutter_overlay_window.dart'; // Unused import
 
 import 'services/timer_service.dart';
 import 'services/click_service.dart';
@@ -31,7 +31,7 @@ void overlayMain() {
 }
 
 class BinanceAutoClickerApp extends StatelessWidget {
-  const BinanceAutoClickerApp({Key? key}) : super(key: key);
+  const BinanceAutoClickerApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class BinanceAutoClickerApp extends StatelessWidget {
 }
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -64,6 +64,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   late Animation<double> _scaleAnimation;
 
   bool _isInitialized = false;
+  bool _initializationStarted = false;
   String _initializationStatus = 'Initializing...';
   List<String> _initializationSteps = [];
 
@@ -93,7 +94,15 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     ));
 
     _animationController.forward();
-    _initializeApp();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isInitialized && !_initializationStarted) {
+      _initializationStarted = true;
+      _initializeApp();
+    }
   }
 
   @override
@@ -107,6 +116,9 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       await _updateStatus('Checking platform capabilities...');
       await Future.delayed(const Duration(milliseconds: 500));
 
+      // Delay to ensure context is ready
+      await Future.delayed(const Duration(milliseconds: 100));
+
       // Check platform support
       final overlayService = context.read<OverlayService>();
       if (overlayService.isOverlaySupported) {
@@ -119,8 +131,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       await Future.delayed(const Duration(milliseconds: 300));
 
       // Initialize services
-      final timerService = context.read<TimerService>();
-      final clickService = context.read<ClickService>();
+      // final timerService = context.read<TimerService>(); // Not used
+      // final clickService = context.read<ClickService>(); // Not used
 
       // Initialize overlay service
       await overlayService.initialize();

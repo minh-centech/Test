@@ -12,7 +12,7 @@ class TimerService extends ChangeNotifier {
   bool _isActive = false;
   bool _isSyncing = false;
   Duration _remainingTime = Duration.zero;
-  DateTime? _lastUpdate;
+  DateTime? _lastUpdate; // Keep this field as it's used
 
   // Getters
   bool get isActive => _isActive;

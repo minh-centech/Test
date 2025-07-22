@@ -46,15 +46,15 @@ class OverlayService extends ChangeNotifier {
   Future<bool> requestOverlayPermission() async {
     try {
       final isGranted = await FlutterOverlayWindow.requestPermission();
-      _isOverlayEnabled = isGranted;
+      _isOverlayEnabled = isGranted ?? false;
       
-      if (isGranted) {
+      if (_isOverlayEnabled) {
         _setupOverlayListeners();
       }
       
       notifyListeners();
-      developer.log('Overlay permission ${isGranted ? 'granted' : 'denied'}', name: 'OverlayService');
-      return isGranted;
+      developer.log('Overlay permission ${_isOverlayEnabled ? 'granted' : 'denied'}', name: 'OverlayService');
+      return _isOverlayEnabled;
     } catch (e) {
       developer.log('Overlay permission request error: $e', name: 'OverlayService');
       return false;
@@ -114,7 +114,7 @@ class OverlayService extends ChangeNotifier {
         positionGravity: PositionGravity.none,
         width: 300,
         height: 120,
-        startPosition: OverlayPosition(_overlayX.toInt(), _overlayY.toInt()),
+        startPosition: OverlayPosition(_overlayX, _overlayY),
       );
 
       _isOverlayActive = true;

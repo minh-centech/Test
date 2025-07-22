@@ -12,7 +12,7 @@ import 'countdown_display.dart';
 import 'position_selector.dart';
 
 class SetupScreen extends StatefulWidget {
-  const SetupScreen({Key? key}) : super(key: key);
+  const SetupScreen({super.key});
 
   @override
   State<SetupScreen> createState() => _SetupScreenState();
@@ -262,7 +262,7 @@ class _SetupScreenState extends State<SetupScreen> with TickerProviderStateMixin
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Timer Settings',
                       style: AppConstants.subheadingStyle,
                     ),
@@ -352,7 +352,7 @@ class _SetupScreenState extends State<SetupScreen> with TickerProviderStateMixin
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'Click Configuration',
             style: AppConstants.headingStyle,
           ),
@@ -422,7 +422,7 @@ class _SetupScreenState extends State<SetupScreen> with TickerProviderStateMixin
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Test Clicks',
                         style: AppConstants.subheadingStyle,
                       ),
@@ -457,9 +457,9 @@ class _SetupScreenState extends State<SetupScreen> with TickerProviderStateMixin
                         Column(
                           children: [
                             AppConstants.smallSpacing.verticalSpace,
-                            LinearProgressIndicator(
+                            const LinearProgressIndicator(
                               backgroundColor: AppConstants.surfaceColor,
-                              valueColor: const AlwaysStoppedAnimation<Color>(AppConstants.primaryColor),
+                              valueColor: AlwaysStoppedAnimation<Color>(AppConstants.primaryColor),
                             ),
                             AppConstants.smallSpacing.verticalSpace,
                             Text('Executed: ${clickService.executedClicks} clicks'),
@@ -495,7 +495,7 @@ class _SetupScreenState extends State<SetupScreen> with TickerProviderStateMixin
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'Feedback Settings',
             style: AppConstants.headingStyle,
           ),
@@ -527,7 +527,7 @@ class _SetupScreenState extends State<SetupScreen> with TickerProviderStateMixin
           
           AppConstants.largeSpacing.verticalSpace,
           
-          Text(
+          const Text(
             'Overlay Settings',
             style: AppConstants.headingStyle,
           ),

@@ -7,7 +7,7 @@ import '../services/overlay_service.dart';
 import '../utils/constants.dart';
 
 class FloatingOverlay extends StatefulWidget {
-  const FloatingOverlay({Key? key}) : super(key: key);
+  const FloatingOverlay({super.key});
 
   @override
   State<FloatingOverlay> createState() => _FloatingOverlayState();
@@ -22,7 +22,7 @@ class _FloatingOverlayState extends State<FloatingOverlay>
 
   Timer? _updateTimer;
   bool _isMinimized = false;
-  bool _isDragging = false;
+  bool _isDragging = false; // Keep this field as it's used
 
   @override
   void initState() {
@@ -356,14 +356,14 @@ class _FloatingOverlayState extends State<FloatingOverlay>
     } else if (seconds > 10) {
       return '${seconds}s';
     } else {
-      return '${seconds}.${(milliseconds / 100).floor()}s';
+      return '$seconds.${(milliseconds / 100).floor()}s';
     }
   }
 }
 
 // Overlay entry point for the native overlay system
 class OverlayEntryPoint extends StatelessWidget {
-  const OverlayEntryPoint({Key? key}) : super(key: key);
+  const OverlayEntryPoint({super.key});
 
   @override
   Widget build(BuildContext context) {

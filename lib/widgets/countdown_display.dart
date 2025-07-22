@@ -8,7 +8,7 @@ import '../services/overlay_service.dart';
 import '../utils/constants.dart';
 
 class CountdownDisplay extends StatefulWidget {
-  const CountdownDisplay({Key? key}) : super(key: key);
+  const CountdownDisplay({super.key});
 
   @override
   State<CountdownDisplay> createState() => _CountdownDisplayState();
@@ -347,7 +347,7 @@ class _CountdownDisplayState extends State<CountdownDisplay> with TickerProvider
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Configuration',
                           style: AppConstants.subheadingStyle,
                         ),

@@ -89,26 +89,32 @@ class MainActivity: FlutterActivity() {
             service.executeRapidClicks(x, y, count, intervalMs, object : AutoClickAccessibilityService.ClickCallback {
                 override fun onClickExecuted(count: Int, x: Float, y: Float) {
                     // Notify Flutter about click execution
-                    MethodChannel(flutterEngine?.dartExecutor?.binaryMessenger, CHANNEL)
-                        .invokeMethod("clickExecuted", mapOf(
-                            "count" to count,
-                            "x" to x,
-                            "y" to y
-                        ))
+                    flutterEngine?.dartExecutor?.binaryMessenger?.let { messenger ->
+                        MethodChannel(messenger, CHANNEL)
+                            .invokeMethod("clickExecuted", mapOf(
+                                "count" to count,
+                                "x" to x,
+                                "y" to y
+                            ))
+                    }
                 }
 
                 override fun onSequenceCompleted(totalClicks: Int) {
                     // Notify Flutter about sequence completion
-                    MethodChannel(flutterEngine?.dartExecutor?.binaryMessenger, CHANNEL)
-                        .invokeMethod("sequenceCompleted", mapOf(
-                            "totalClicks" to totalClicks
-                        ))
+                    flutterEngine?.dartExecutor?.binaryMessenger?.let { messenger ->
+                        MethodChannel(messenger, CHANNEL)
+                            .invokeMethod("sequenceCompleted", mapOf(
+                                "totalClicks" to totalClicks
+                            ))
+                    }
                 }
 
                 override fun onClickError(error: String) {
                     // Notify Flutter about error
-                    MethodChannel(flutterEngine?.dartExecutor?.binaryMessenger, CHANNEL)
-                        .invokeMethod("clickError", error)
+                    flutterEngine?.dartExecutor?.binaryMessenger?.let { messenger ->
+                        MethodChannel(messenger, CHANNEL)
+                            .invokeMethod("clickError", error)
+                    }
                 }
             })
 
