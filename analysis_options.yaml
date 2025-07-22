@@ -1,0 +1,33 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/generated_plugin_registrant.dart"
+  
+  errors:
+    invalid_annotation_target: ignore
+
+linter:
+  rules:
+    # Flutter specific
+    use_build_context_synchronously: false
+    
+    # General Dart
+    prefer_const_constructors: true
+    prefer_const_declarations: true
+    prefer_const_literals_to_create_immutables: true
+    avoid_unnecessary_containers: true
+    sized_box_for_whitespace: true
+    
+    # Documentation
+    public_member_api_docs: false
+    
+    # Performance
+    prefer_final_fields: true
+    prefer_final_locals: true
+    
+    # Style
+    prefer_single_quotes: false
+    require_trailing_commas: false
